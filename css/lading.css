@@ -1,0 +1,322 @@
+/* ==========================================================================
+   LANDING PAGE STYLES - EDUTRACK
+   Estilos específicos para la página de presentación principal
+   ========================================================================== */
+
+/* 1. HEADER & NAVEGACIÓN */
+.main-header {
+    background-color: rgba(11, 17, 30, 0.85); /* Fondo base con transparencia */
+    backdrop-filter: blur(12px); /* Efecto esmerilado moderno */
+    -webkit-backdrop-filter: blur(12px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.25rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-link {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+}
+
+.logo-link span {
+    color: var(--color-primary); /* Turquesa andino */
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem;
+}
+
+.nav-link {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+}
+
+.nav-link:hover {
+    color: var(--color-primary);
+}
+
+/* 2. SECCIÓN HÉROE (HERO SECTION) */
+.hero-section {
+    position: relative;
+    padding: 8rem 2rem 6rem 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(circle at 50% -20%, rgba(0, 242, 254, 0.15) 0%, transparent 60%);
+}
+
+.hero-container {
+    max-width: 800px;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, var(--color-text-main) 30%, #A3E635 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+/* 3. SECCIÓN DE ESTADÍSTICAS / LOGROS */
+.stats-section {
+    padding: 4rem 2rem;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    background-color: rgba(21, 29, 48, 0.3);
+}
+
+.stats-grid {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 0.25rem;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+}
+
+/* 4. SECCIÓN DE REGISTRO (CON FORMULARIO CARD) */
+.register-section {
+    padding: 6rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.register-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.register-card {
+    background-color: var(--color-bg-surface);
+    padding: 2.5rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-md);
+}
+
+.register-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.register-form label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--color-text-main);
+}
+
+.form-input, .form-select {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    background-color: var(--color-bg-main);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    color: var(--color-text-main);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.form-input:focus, .form-select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 8px rgba(0, 242, 254, 0.2);
+}
+
+.form-select option {
+    background-color: var(--color-bg-surface);
+    color: var(--color-text-main);
+}
+
+/* Checkbox Personalizado */
+.form-group-checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+}
+
+.input-checkbox {
+    width: 1.15rem;
+    height: 1.15rem;
+    accent-color: var(--color-primary);
+    margin-top: 0.2rem;
+    cursor: pointer;
+}
+
+.form-label-checkbox {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    line-height: 1.4;
+    cursor: pointer;
+}
+
+.btn-submit {
+    width: 100%;
+    background-color: var(--color-secondary); /* Verde Esmeralda para acciones de éxito */
+    color: var(--color-bg-main);
+}
+
+.btn-submit:hover {
+    background-color: #00E65B;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 200, 83, 0.3);
+}
+
+/* 5. PIE DE PÁGINA (FOOTER) */
+.main-footer {
+    border-top: 1px solid var(--color-border);
+    padding: 4rem 2rem 2rem 2rem;
+    background-color: #080D17;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.footer-brand {
+    text-align: center;
+}
+
+.footer-tagline {
+    margin-top: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+}
+
+.footer-menu {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+.footer-link {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+}
+
+.footer-link:hover {
+    color: var(--color-text-main);
+}
+
+.footer-copy {
+    text-align: center;
+    border-top: 1px solid rgba(36, 49, 79, 0.4);
+    padding-top: 1.5rem;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+}
+
+/* 6. BOTÓN FLOTANTE WHATSAPP */
+.whatsapp-float {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    background-color: #25D366;
+    color: #FFF;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+    transition: transform var(--transition-fast);
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+}
+
+/* ==========================================================================
+   MEDIA QUERIES (RESPONSIVE DESIGN)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .nav-menu, .nav-cta {
+        display: none; /* En producción esto se controlaría con un menú hamburguesa si se desea */
+    }
+    
+    .hero-title {
+        font-size: 2.25rem;
+    }
+    
+    .register-section {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+    
+    .register-content {
+        text-align: center;
+    }
+    
+    .stats-grid {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+}
