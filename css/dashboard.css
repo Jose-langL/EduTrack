@@ -1,0 +1,533 @@
+/* ==========================================================================
+   DASHBOARD STYLES - EDUTRACK
+   Control de Layout, Sidebar, KPI Cards, Grid de Estudiantes y Modales
+   ========================================================================== */
+
+/* 1. DISTRIBUCIÓN DEL INTERFAZ (LAYOUT PRINCIPAL) */
+.site-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.main-content {
+    flex: 1;
+    padding: 2.5rem;
+    background-color: var(--color-bg-main);
+    overflow-y: auto;
+}
+
+/* Ocultar la cabecera móvil por defecto en escritorio */
+.mobile-header {
+    display: none;
+}
+
+/* 2. PANEL LATERAL (SIDEBAR WRAPPER) */
+.sidebar-wrapper {
+    width: 260px;
+    background-color: var(--color-bg-surface);
+    border-right: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 1.5rem;
+    transition: transform var(--transition-normal);
+}
+
+.sidebar-brand {
+    margin-bottom: 3rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.sidebar-brand span {
+    color: var(--color-primary);
+}
+
+.sidebar-menu {
+    flex: 1;
+}
+
+.sidebar-menu ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.menu-link {
+    display: block;
+    padding: 0.85rem 1rem;
+    border-radius: var(--radius-sm);
+    color: var(--color-text-muted);
+    font-weight: 500;
+    transition: all var(--transition-fast);
+}
+
+.menu-link:hover, .menu-link.active {
+    color: var(--color-text-main);
+    background-color: var(--color-border);
+}
+
+.menu-link.active {
+    border-left: 3px solid var(--color-primary);
+    background-color: rgba(0, 242, 254, 0.05);
+}
+
+.btn-logout {
+    padding: 0.85rem 1rem;
+    color: var(--color-danger);
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+    display: block;
+    transition: background var(--transition-fast);
+}
+
+.btn-logout:hover {
+    background-color: rgba(255, 82, 82, 0.1);
+}
+
+/* 3. ENCABEZADO DE SECCIÓN INTERNAL */
+.content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+}
+
+.subtitle {
+    font-size: 0.95rem;
+    margin-top: 0.25rem;
+}
+
+.btn-add {
+    background-color: var(--color-primary);
+    color: var(--color-bg-main);
+}
+
+.btn-add:hover {
+    background-color: #00D2DC;
+    box-shadow: 0 0 12px rgba(0, 242, 254, 0.3);
+}
+
+/* 4. TARJETAS KPI (METRICS GRID) */
+.overview-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.kpi-card {
+    background-color: var(--color-bg-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.kpi-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.kpi-icon-wrapper {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+}
+
+.icon-blue { background-color: rgba(0, 242, 254, 0.1); }
+.icon-green { background-color: rgba(0, 200, 83, 0.1); }
+.icon-amber { background-color: rgba(255, 179, 0, 0.1); }
+
+.kpi-title {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.kpi-value {
+    font-family: var(--font-mono);
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.kpi-value-small {
+    font-family: var(--font-mono);
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-warning);
+}
+
+.kpi-unit {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--color-text-muted);
+}
+
+.kpi-trend {
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.trend-up { color: var(--color-secondary); }
+.trend-neutral { color: var(--color-text-muted); }
+
+.kpi-progress-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.kpi-progress-bar {
+    flex: 1;
+    height: 6px;
+    background-color: var(--color-border);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.kpi-progress-fill {
+    height: 100%;
+    background-color: var(--color-secondary);
+    transition: width var(--transition-normal);
+}
+
+.kpi-sub-label, .kpi-period {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+}
+
+/* 5. SECCIÓN DE GRÁFICO (CHART.JS CONTAINER) */
+.analytics-section {
+    background-color: var(--color-bg-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 1.75rem;
+    margin-bottom: 2.5rem;
+}
+
+.block-header {
+    margin-bottom: 1.5rem;
+}
+
+.block-header h2 {
+    font-size: 1.25rem;
+}
+
+.chart-container {
+    position: relative;
+    width: 100%;
+    max-height: 280px;
+}
+
+/* 6. BARRA DE FILTROS CRUZADOS */
+.filters-bar {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.search-box {
+    flex: 1;
+}
+
+.search-input, .filter-select {
+    width: 100%;
+    background-color: var(--color-bg-surface);
+    border: 1px solid var(--color-border);
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-sm);
+    color: var(--color-text-main);
+    transition: border-color var(--transition-fast);
+}
+
+.search-input:focus, .filter-select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+}
+
+.filter-select option {
+    background-color: var(--color-bg-surface);
+}
+
+/* 7. GRID DE TARJETAS DE ESTUDIANTES */
+.students-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+}
+
+.student-card {
+    background-color: var(--color-bg-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.card-header-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.student-name {
+    font-size: 1.15rem;
+    font-weight: 600;
+}
+
+.student-location {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin-top: 0.15rem;
+}
+
+.badge-plan {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    letter-spacing: 0.02em;
+}
+
+.plan-básico { background-color: rgba(245, 158, 11, 0.15); color: var(--color-warning); }
+.plan-estándar { background-color: rgba(0, 242, 254, 0.15); color: var(--color-primary); }
+.plan-premium { background-color: rgba(0, 200, 83, 0.15); color: var(--color-secondary); }
+
+.student-course {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--color-text-main);
+}
+
+.progress-label-box {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    margin-bottom: 0.4rem;
+}
+
+.progress-pct {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.card-progress-bar {
+    height: 6px;
+    background-color: var(--color-border);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.card-progress-fill {
+    height: 100%;
+    background-color: var(--color-primary);
+    border-radius: 3px;
+    transition: width var(--transition-normal);
+}
+
+.card-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    border-top: 1px solid rgba(36, 49, 79, 0.4);
+    padding-top: 1rem;
+    margin-top: auto; /* Empuja las acciones al fondo de la card */
+}
+
+.card-actions .btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+}
+
+.btn-edit {
+    background-color: rgba(0, 242, 254, 0.1);
+    color: var(--color-primary);
+}
+
+.btn-edit:hover { background-color: rgba(0, 242, 254, 0.2); }
+
+.btn-delete {
+    background-color: rgba(255, 82, 82, 0.1);
+    color: var(--color-danger);
+}
+
+.btn-delete:hover { background-color: rgba(255, 82, 82, 0.2); }
+
+/* 8. VENTANA MODAL (OVERLAY & INTERFAZ) */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(11, 17, 30, 0.8);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition-fast) ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-card {
+    background-color: var(--color-bg-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    width: 90%;
+    max-width: 550px;
+    box-shadow: var(--shadow-md);
+    transform: translateY(-20px);
+    transition: transform var(--transition-fast) ease;
+}
+
+.modal-overlay.active .modal-card {
+    transform: translateY(0);
+}
+
+.modal-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+#student-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+#student-form label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.btn-cancel {
+    background-color: transparent;
+    border: 1px solid var(--color-border);
+}
+
+.btn-cancel:hover { background-color: rgba(36, 49, 79, 0.4); }
+
+.btn-save {
+    background-color: var(--color-secondary);
+    color: var(--color-bg-main);
+}
+
+.btn-save:hover { background-color: #00E65B; }
+
+.no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 3rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+}
+
+/* ==========================================================================
+   REGLAS DE RESPONSIVIDAD (MOBILE-FIRST ADAPTATION)
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .overview-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .site-container {
+        flex-direction: column;
+    }
+
+    /* Activación del Mobile Header */
+    .mobile-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 1.5rem;
+        background-color: var(--color-bg-surface);
+        border-bottom: 1px solid var(--color-border);
+        position: sticky;
+        top: 0;
+        z-index: 110;
+    }
+
+    .mobile-logo {
+        font-size: 1.25rem;
+        font-weight: 700;
+    }
+
+    .mobile-logo span { color: var(--color-primary); }
+
+    .menu-toggle-btn {
+        font-size: 1.5rem;
+        color: var(--color-text-main);
+    }
+
+    /* Transformación de Sidebar a menú colapsable lateral */
+    .sidebar-wrapper {
+        position: fixed;
+        top: 61px; /* Justo debajo del header móvil */
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 61px);
+        z-index: 105;
+        transform: translateX(-100%); /* Oculto por defecto */
+    }
+
+    .sidebar-wrapper.active {
+        transform: translateX(0); /* Despliega el menú */
+    }
+
+    .sidebar-brand { display: none; }
+
+    .main-content {
+        padding: 1.5rem;
+    }
+
+    .content-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+    }
+
+    .btn-add {
+        width: 100%;
+    }
+
+    .overview-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .filters-bar {
+        flex-direction: column;
+    }
+}
