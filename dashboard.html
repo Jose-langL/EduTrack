@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Gestión | EduTrack</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="./css/dashboard.css">
+</head>
+<body>
+
+    <header class="mobile-header">
+        <div class="mobile-logo">
+            <a href="./index.html">Edu<span>Track</span></a>
+        </div>
+        <button id="menu-toggle" class="menu-toggle-btn" aria-label="Abrir menú de navegación" aria-expanded="false">
+            <span class="hamburger-icon">&#9776;</span>
+        </button>
+    </header>
+
+    <div class="site-container">
+        
+        <aside id="sidebar" class="sidebar-wrapper">
+            <div class="sidebar-brand">
+                <a href="./index.html" class="logo-link">Edu<span>Track</span></a>
+            </div>
+            
+            <nav class="sidebar-menu" aria-label="Menú del panel">
+                <ul>
+                    <li><a href="#" class="menu-link active">📊 Panel General</a></li>
+                    <li><a href="#analytics-section" class="menu-link">📈 Analítica de Cohortes</a></li>
+                    <li><a href="#students-section" class="menu-link">👥 Gestión de Estudiantes</a></li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="./index.html" class="btn-logout">🚪 Cerrar Sesión</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            
+            <header class="content-header">
+                <div>
+                    <h1>Panel Técnico de Gestión</h1>
+                    <p class="subtitle">Monitoreo de estudiantes, rendimiento por ciudades e ingresos del catálogo.</p>
+                </div>
+                <button id="btn-open-add" class="btn btn-add">+ Registrar Estudiante</button>
+            </header>
+
+            <section class="overview-grid" id="overview">
+                <article class="kpi-card">
+                    <div class="kpi-header">
+                        <span class="kpi-icon-wrapper icon-blue">📚</span>
+                        <h2 class="kpi-title">Cursos Impartidos</h2>
+                    </div>
+                    <div class="kpi-body">
+                        <p class="kpi-value" id="kpi-total-courses">0 <span class="kpi-unit">activos</span></p>
+                    </div>
+                    <div class="kpi-footer">
+                        <span class="kpi-trend trend-neutral" id="kpi-courses-trend">Catálogo estable</span>
+                    </div>
+                </article>
+
+                <article class="kpi-card">
+                    <div class="kpi-header">
+                        <span class="kpi-icon-wrapper icon-green">⚡</span>
+                        <h2 class="kpi-title">Progreso Promedio</h2>
+                    </div>
+                    <div class="kpi-body">
+                        <div class="kpi-progress-wrapper">
+                            <p class="kpi-value" id="kpi-avg-progress">0%</p>
+                            <div class="kpi-progress-bar">
+                                <div id="kpi-progress-fill" class="kpi-progress-fill" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="kpi-footer">
+                        <span class="kpi-trend trend-up">Métrica global</span>
+                    </div>
+                </article>
+
+                <article class="kpi-card">
+                    <div class="kpi-header">
+                        <span class="kpi-icon-wrapper icon-amber">💳</span>
+                        <h2 class="kpi-title">Ingresos Estimados</h2>
+                    </div>
+                    <div class="kpi-body">
+                        <p class="kpi-value-small" id="kpi-total-revenue">$0 USD</p>
+                        <p class="kpi-sub-label">Facturación total acumulada</p>
+                    </div>
+                    <div class="kpi-footer">
+                        <span class="kpi-period">Monto basado en divisas del dataset</span>
+                    </div>
+                </article>
+            </section>
+
+            <section id="analytics-section" class="analytics-section">
+                <div class="block-header">
+                    <h2>Distribución Geográfica</h2>
+                    <p>Conteo en tiempo real de estudiantes matriculados por ciudad de residencia en Colombia.</p>
+                </div>
+                <div class="chart-container">
+                    <canvas id="analyticsChart"></canvas>
+                </div>
+            </section>
+
+            <section class="filters-bar">
+                <div class="search-box">
+                    <input type="text" id="search-input" class="search-input" placeholder="Buscar por nombre o correo electrónico...">
+                </div>
+                <div class="select-box">
+                    <select id="filter-city" class="filter-select">
+                        <option value="">Todas las ciudades</option>
+                    </select>
+                </div>
+                <div class="select-box">
+                    <select id="filter-plan" class="filter-select">
+                        <option value="">Todos los planes</option>
+                        <option value="básico">Básico</option>
+                        <option value="estándar">Estándar</option>
+                        <option value="premium">Premium</option>
+                    </select>
+                </div>
+            </section>
+
+            <section id="students-section" class="students-grid"></section>
+
+        </main>
+    </div>
+
+    <div id="modal-overlay" class="modal-overlay">
+        <div class="modal-card">
+            <h2 id="modal-title" class="modal-title">Registrar Estudiante</h2>
+            
+            <form id="student-form" novalidate>
+                <div class="form-group">
+                    <label for="form-name">Nombre Completo</label>
+                    <input type="text" id="form-name" class="search-input" required autocomplete="name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="form-email">Correo Electrónico</label>
+                    <input type="email" id="form-email" class="search-input" required autocomplete="email">
+                </div>
+                
+                <div class="form-group">
+                    <label for="form-city">Ciudad de Origen</label>
+                    <select id="form-city" class="filter-select" required>
+                        <option value="" disabled selected>Selecciona una ciudad</option>
+                        <option value="Bogotá">Bogotá</option>
+                        <option value="Medellín">Medellín</option>
+                        <option value="Cali">Cali</option>
+                        <option value="Barranquilla">Barranquilla</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="form-course">Curso Asignado</label>
+                    <input type="text" id="form-course" class="search-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="form-progress">Progreso Académico (%)</label>
+                    <input type="number" id="form-progress" class="search-input" min="0" max="100" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="form-plan">Plan Adquirido</label>
+                    <select id="form-plan" class="filter-select" required>
+                        <option value="básico">Básico</option>
+                        <option value="estándar">Estándar</option>
+                        <option value="premium">Premium</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="form-amount">Monto de Matrícula (USD)</label>
+                    <input type="number" id="form-amount" class="search-input" min="0" required>
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="button" id="btn-cancel" class="btn btn-cancel">Cancelar</button>
+                    <button type="submit" class="btn btn-save">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <script src="./js/sidebar.js"></script>
+    <script src="./js/validator.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+</html>
